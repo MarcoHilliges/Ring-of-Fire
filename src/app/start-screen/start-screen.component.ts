@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Firestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,12 +9,15 @@ import { Router } from '@angular/router';
 })
 export class StartScreenComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private firestore: Firestore) { }
 
   ngOnInit(): void {
   }
 
   newGame(){
-    this.router.navigateByUrl('/game');
+
+
+
+    this.router.navigateByUrl('/game/game1');
   }
 }
