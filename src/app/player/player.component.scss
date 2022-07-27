@@ -6,7 +6,7 @@
     border-bottom-left-radius: 50px;
     background-color: rgba(211, 211, 211, 0.514);
     span{
-        font-size: 32px;
+        font-size: 2rem;
         margin-left: 16px;
     }
     
@@ -20,4 +20,20 @@
 
 .player-active{
     background-color: orange !important;
+}
+
+@media (orientation: landscape) and (max-height: 600px){
+    // .player{
+    //     width: 150px;
+
+    //     span{
+    //         font-size: 1rem;
+    //     }
+
+    //     img{
+    //         width: 35px;
+    //         height: 35px;
+    //     }
+
+    // }
 }

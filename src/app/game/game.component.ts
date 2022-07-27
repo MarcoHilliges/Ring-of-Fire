@@ -16,8 +16,8 @@ export class GameComponent implements OnInit {
   // currentCard: string = '';
   game!: Game;
   game$!: Observable<any>;
-  activeGame$!:any;
-  game1!:any;
+  // activeGame$!:any;
+  // game1!:any;
   gameId: string = '';
 
 
@@ -29,7 +29,7 @@ export class GameComponent implements OnInit {
     this.newGame();
 
     this.route.params.subscribe(async (params) => {
-      console.log(params['gameId']);
+      // console.log(params['gameId']);
       this.gameId = params['gameId'];
       // const coll:any = collection(this.firestore, 'games');  // greift auf das JSON todos in Firebase zu
       // console.log('coll', coll);
@@ -44,7 +44,7 @@ export class GameComponent implements OnInit {
 
       
       onSnapshot(doc(this.firestore, "games", params['gameId']), (doc) => {
-        console.log("Current data: ", doc.data());
+        // console.log("Current data: ", doc.data());
         const loadGame:any =doc.data();
       
         // update game-data
@@ -75,8 +75,8 @@ export class GameComponent implements OnInit {
   }
 
   takeCard(){
-    if(!this.game.pickCardAnimation){
-      this.game.currentCard = String(this.game.stack.pop()); //Removes the last element from an array and returns it.
+    if(!this.game.pickCardAnimation && this.game.players.length > 0){
+      this.game.currentCard = 'gray_back';
       
       this.game.pickCardAnimation =true;
       // console.log('New Card' + this.currentCard);
@@ -85,12 +85,15 @@ export class GameComponent implements OnInit {
       this.game.currentPlayer++;
       this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
       this.saveGame();
-      
       setTimeout(() => {
+        this.game.currentCard = String(this.game.stack.pop()); //Removes the last element from an array and returns it.
+        this.saveGame();
+      }, 400);
+      setTimeout(() => {     
         this.game.playedCards.push(this.game.currentCard);
         this.game.pickCardAnimation = false;
         this.saveGame();
-      }, 1000);
+      }, 2000);
     }
   }
 

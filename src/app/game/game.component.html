@@ -1,28 +1,37 @@
-<app-player *ngFor="let player of game.players; let i = index" 
-            [ngStyle]="{'top.px': 100 + 90 * i}"
-            [playerActive]="i == game.currentPlayer"
-            [name]="player"
-            class="player-position">
-
-</app-player>
+<div class="player-overlay">
+     <div class="player-area">
+          <app-player *ngFor="let player of game.players; let i = index" 
+                    [ngStyle]="{'top.px': 100 + 90 * i}"
+                    [playerActive]="i == game.currentPlayer"
+                    [name]="player"
+                    class="player-position">
+          </app-player>
+     </div>
+</div>
 
 <div class="field">
     <div class="card-stack">
 
           <!-- Card stack-->
-          <img *ngFor="let c of [0,1,2,3]; let i = index;" [ngStyle]="{'right.px': i * 5}"
-               src="assets/img/Backgrounds/gray_back.png" alt="">
+          <img *ngFor="let c of game.stack; let i = index;" 
+               [ngStyle]="{'right.px': i / 2}"
+               src="assets/img/cards/gray_back.png" alt="">
 
-          <img (click)="takeCard()" class="top-card" style="right: 20px;" 
-               src="assets/img/Backgrounds/gray_back.png" alt="">
+          <img (click)="takeCard()" class="top-card" 
+               [ngStyle]="{'right.px': game.stack.length / 2}" 
+               src="assets/img/cards/gray_back.png" alt="">
 
 
           <!-- Stack for played cards-->
-          <img *ngFor="let card of game.playedCards" class="played-cards"
+          <img *ngFor="let card of game.playedCards; let i = index;"
+               [ngStyle]="{'right.px': i / 2}"
+               class="played-cards"
                src="assets/img/cards/{{ card }}.png" alt="">
 
           <!-- Current card (Animation)-->
-          <img (click)="takeCard()" *ngIf="game.pickCardAnimation" class="pick-card" style="right: 20px;" 
+          <img (click)="takeCard()" *ngIf="game.pickCardAnimation" 
+               [ngStyle]="{'right.px': game.stack.length / 2}" 
+               class="pick-card" 
                src="assets/img/cards/{{ game.currentCard }}.png" alt="">
      </div>
 </div>

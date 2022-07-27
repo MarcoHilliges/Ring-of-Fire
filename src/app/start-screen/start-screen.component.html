@@ -15,12 +15,12 @@
         
         <form #form [formGroup]="inputFormFB">
             
-              <input formControlName="inputName" name="inputName" type="text" placeholder="Enter a Gamename" required>
+              <input formControlName="inputName" name="inputName" type="text" placeholder="Gamename" required>
               
               <button [disabled]="!(inputFormFB.valid  && (inputFormFB.dirty || inputFormFB.touched))"  
                       (click)="newGame()"
                       type="button"
-                      >edit Game</button>
+                      >edit</button>
         </form>
 
     </div>

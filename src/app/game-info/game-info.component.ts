@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Game } from 'src/models/game';
 
 @Component({
   selector: 'app-game-info',
@@ -26,6 +27,7 @@ export class GameInfoComponent implements OnInit, OnChanges {
   title :string = '';
   description :string = '';
 
+
   @Input() card! :string;
 
   constructor() { }
@@ -35,9 +37,9 @@ export class GameInfoComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges():void{
-    if(this.card){
+    if(this.card && this.card !== 'gray_back'){
       console.log('Current card is', this.card);
-      console.log('Current number is', +this.card.split('_')[1]); // split erzeugt 2 Arrays die beim _ getrennt sind.  + wandelt den Typ in nimber um
+      // console.log('Current number is', +this.card.split('_')[1]); // split erzeugt 2 Arrays die beim _ getrennt sind.  + wandelt den Typ in nimber um
       let cardNumber = +this.card.split('_')[1];
       this.title = this.cardAction[cardNumber -1].title;
       this.description = this.cardAction[cardNumber -1].description;
