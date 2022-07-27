@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { collection, collectionData, doc, Firestore, setDoc } from '@angular/fire/firestore';
+import { collection, collectionData, deleteDoc, doc, Firestore, setDoc } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -23,8 +23,8 @@ export class StartScreenComponent implements OnInit {
     this.game$ = collectionData(coll);
 
     this.game$.subscribe( (gameStatus) => {
-      console.log(this.game$);
-      console.log(gameStatus);
+      // console.log(this.game$);
+      // console.log(gameStatus);
       this.gamesFromServer = gameStatus;
     })
 
@@ -32,7 +32,7 @@ export class StartScreenComponent implements OnInit {
     this.inputFormFB = this._fb.group({
       inputName: ['', [
         Validators.required,
-        Validators.minLength(5)
+        Validators.minLength(2)
       ], []]
     });
   }
@@ -48,12 +48,15 @@ export class StartScreenComponent implements OnInit {
     const coll:any = collection(this.firestore, 'games');
     setDoc(doc(coll, this.inputFormFB.value.inputName), game.toJSON());
 
-
     this.router.navigateByUrl('/game/'+this.inputFormFB.value.inputName);
   }
 
   loadGame(name:string){
-    alert(name);
     this.router.navigateByUrl('/game/'+name);
+  }
+
+  deleteGame(name:string){
+    const coll:any = collection(this.firestore, 'games');
+    deleteDoc(doc(coll, name))
   }
 }

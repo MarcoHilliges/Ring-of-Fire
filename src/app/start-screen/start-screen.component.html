@@ -1,15 +1,21 @@
 <div class="start-screen">
     <img class="background-img" src="assets/img/Backgrounds/start-screen.jpg" alt="">
     <div class="content">
-        <span class="play-button" *ngFor="let game of gamesFromServer" (click)="loadGame(game.gameName)">
-            {{ game.gameName }}
-        </span>
-        
+
+        <div class="load-game-area">
+            <div class="load-game-single-content" *ngFor="let game of gamesFromServer">
+                <span (click)="loadGame(game.gameName)"> {{ game.gameName }} </span>
+                <div (click)="deleteGame(game.gameName)">
+                    X
+                </div>
+            </div>
+            
+        </div>
         
         
         <form #form [formGroup]="inputFormFB">
             
-              <input formControlName="inputName" name="inputName" type="text" placeholder=" Enter a Gamename" required>
+              <input formControlName="inputName" name="inputName" type="text" placeholder="Enter a Gamename" required>
               
               <button [disabled]="!(inputFormFB.valid  && (inputFormFB.dirty || inputFormFB.touched))"  
                       (click)="newGame()"
