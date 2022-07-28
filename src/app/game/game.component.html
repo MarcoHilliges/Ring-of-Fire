@@ -13,11 +13,13 @@
     <div class="card-stack">
 
           <!-- Card stack-->
-          <img *ngFor="let c of game.stack; let i = index;" 
+          <img 
+               *ngFor="let c of game.stack; let i = index;" 
                [ngStyle]="{'right.px': i / 2}"
                src="assets/img/cards/gray_back.png" alt="">
 
-          <img (click)="takeCard()" class="top-card" 
+          <img *ngIf="game.stack.length > 0"
+               (click)="takeCard()" class="top-card" 
                [ngStyle]="{'right.px': game.stack.length / 2}" 
                src="assets/img/cards/gray_back.png" alt="">
 

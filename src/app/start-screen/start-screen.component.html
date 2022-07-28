@@ -3,21 +3,27 @@
     <div class="content">
 
         <div class="load-game-area">
-            <div class="load-game-single-content" *ngFor="let game of gamesFromServer">
-                <span (click)="loadGame(game.gameName)"> {{ game.gameName }} </span>
+            <div class="load-game-single-content" 
+                 *ngFor="let game of gamesFromServer">
+                <span (click)="loadGame(game.gameName)"> 
+                    {{ game.gameName }} 
+                </span>
+
                 <div (click)="deleteGame(game.gameName)">
                     X
                 </div>
-            </div>
-            
+            </div>            
         </div>
-        
-        
-        <form #form [formGroup]="inputFormFB">
-            
-              <input formControlName="inputName" name="inputName" type="text" placeholder="Gamename" required>
+                
+        <form #form [formGroup]="inputFormFB">        
+              <input formControlName="inputName" 
+                     name="inputName" 
+                     type="text" 
+                     placeholder="Gamename" 
+                     required>
               
-              <button [disabled]="!(inputFormFB.valid  && (inputFormFB.dirty || inputFormFB.touched))"  
+              <button [disabled]="!(inputFormFB.valid  && (inputFormFB.dirty 
+                                    || inputFormFB.touched))"  
                       (click)="newGame()"
                       type="button"
                       >edit</button>

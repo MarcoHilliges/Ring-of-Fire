@@ -23,12 +23,9 @@ export class StartScreenComponent implements OnInit {
     this.game$ = collectionData(coll);
 
     this.game$.subscribe( (gameStatus) => {
-      // console.log(this.game$);
-      // console.log(gameStatus);
       this.gamesFromServer = gameStatus;
     })
 
-    // this.name.valueChanges(console.log(this.name));
     this.inputFormFB = this._fb.group({
       inputName: ['', [
         Validators.required,
@@ -47,7 +44,6 @@ export class StartScreenComponent implements OnInit {
     game.gameName = this.inputFormFB.value.inputName;
     const coll:any = collection(this.firestore, 'games');
     setDoc(doc(coll, this.inputFormFB.value.inputName), game.toJSON());
-
     this.router.navigateByUrl('/game/'+this.inputFormFB.value.inputName);
   }
 

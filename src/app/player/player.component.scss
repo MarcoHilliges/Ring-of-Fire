@@ -6,8 +6,12 @@
     border-bottom-left-radius: 50px;
     background-color: rgba(211, 211, 211, 0.514);
     span{
+        display: flex;
+        align-items: center;
+        height: 70px;
         font-size: 2rem;
         margin-left: 16px;
+        overflow-x: auto;
     }
     
     img{
@@ -22,18 +26,17 @@
     background-color: orange !important;
 }
 
-@media (orientation: landscape) and (max-height: 600px){
-    // .player{
-    //     width: 150px;
+@media (orientation: portrait) and (max-width: 600px){
+    .player{
+        width: 150px;
 
-    //     span{
-    //         font-size: 1rem;
-    //     }
+        span{
+            padding-left: 10px;
+            font-size: 1.75rem;
+        }
 
-    //     img{
-    //         width: 35px;
-    //         height: 35px;
-    //     }
-
-    // }
+        img{
+            display: none;
+        }
+    }
 }
