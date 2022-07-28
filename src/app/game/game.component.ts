@@ -36,7 +36,7 @@ export class GameComponent implements OnInit {
 
   takeCard(){
     if(!this.game.pickCardAnimation && this.game.players.length > 0){
-      this.game.currentCard = 'gray_back';      
+      this.game.currentCard = 'card-backgroung';      
       this.game.pickCardAnimation =true;
       this.game.currentPlayer++;
       this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
@@ -51,6 +51,7 @@ export class GameComponent implements OnInit {
         this.saveGame();
       }, 2000);
     }
+    else if (this.game.players.length == 0) alert('Please click the button and add a player')
   }
 
   openDialog(): void {

@@ -16,12 +16,12 @@
           <img 
                *ngFor="let c of game.stack; let i = index;" 
                [ngStyle]="{'right.px': i / 2}"
-               src="assets/img/cards/gray_back.png" alt="">
+               src="assets/img/cards/card-backgroung.png" alt="">
 
           <img *ngIf="game.stack.length > 0"
                (click)="takeCard()" class="top-card" 
                [ngStyle]="{'right.px': game.stack.length / 2}" 
-               src="assets/img/cards/gray_back.png" alt="">
+               src="assets/img/cards/card-backgroung.png" alt="">
 
 
           <!-- Stack for played cards-->
